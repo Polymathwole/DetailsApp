@@ -1,0 +1,14 @@
+﻿@model IQueryable<User>
+@{
+    ViewBag.Title = "Home Page";
+}
+<h1>Welcome to the app!</h1>
+<div>
+    <table>
+        <tr><th>Name</th><th>Title</th><th>First Name</th><th>Last Name</th></tr>
+        @foreach (User u in Model)
+        {
+            <tr><td>@u.UserID</td><td>@u.Title</td><td>@u.FirstName</td><td>@u.LastName</td></tr>
+        }
+    </table>
+</div>
