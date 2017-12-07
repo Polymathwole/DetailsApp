@@ -7,7 +7,7 @@ namespace DetailsApp.Models
 {
     public class User
     {
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
