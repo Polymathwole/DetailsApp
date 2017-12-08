@@ -1,0 +1,17 @@
+﻿@model IEnumerable<User>
+<div>
+        @if (Model == null)
+        {
+            <p>No such user!</p>
+        }
+        else
+        {
+            <table>
+            <tr><th>Name</th><th>Title</th><th>First Name</th><th>Last Name</th><th>Gender</th><th>Date of birth</th><th>Username</th><th>Password</th></tr>
+            @foreach (User u in Model)
+            {
+            <tr><td>@u.UserID</td><td>@u.Title</td><td>@u.FirstName</td><td>@u.LastName</td><td>@u.Gender</td><td>@u.DoB</td><td>@u.Username</td><td>@u.Password</td></tr>
+            }
+            </table>
+        }
+</div>

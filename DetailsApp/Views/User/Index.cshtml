@@ -1,21 +1,18 @@
-﻿@model IEnumerable<User>
+﻿@model User
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Log in";
 }
+
 <h1>Welcome to the app!</h1>
 <div>
-        @if (Model == null)
-        {
-            <p>No such user!</p>
-        }
-        else
-        {
-            <table>
-            <tr><th>Name</th><th>Title</th><th>First Name</th><th>Last Name</th><th>Gender</th><th>Date of birth</th><th>Username</th><th>Password</th></tr>
-            @foreach (User u in Model)
-            {
-            <tr><td>@u.UserID</td><td>@u.Title</td><td>@u.FirstName</td><td>@u.LastName</td><td>@u.Gender</td><td>@u.DoB</td><td>@u.Username</td><td>@u.PasswordHash</td></tr>
-            }
-            </table>
-        }
+   <h3>Log in</h3>
+   <form action="" method="post">
+       <label asp-for="Username">Username</label>
+       <input asp-for="Username" placeholder="Enter username" required/><br/>
+       <label asp-for="Password">Password</label>
+       <input type="password" asp-for="Password" placeholder="Enter password" required/><br />
+       <input type="submit" value="Log in" />
+   </form>
+    <hr />
+    <p>New user? <a asp-action="Signup">Sign up</a></p>
 </div>

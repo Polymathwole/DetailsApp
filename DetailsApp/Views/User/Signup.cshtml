@@ -1,0 +1,47 @@
+﻿@model User
+@{ 
+    ViewBag.Title = "Sign up";
+}
+
+<div>
+    <h3>Sign up</h3>
+    <form asp-action="Signup" method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="Title">Title</label>
+        <select asp-for="Title" >
+            <option value="Mr" selected>Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Ms">Ms</option>
+        </select><br/>
+
+        <label asp-for="FirstName">First name</label>
+        <input asp-for="FirstName" placeholder="Enter first name"  /><br />
+
+        <label asp-for="LastName">Last name</label>
+        <input asp-for="LastName" placeholder="Enter last name"  /><br />
+
+        <label asp-for="Gender">Gender</label>
+        <select asp-for="Gender" >
+            <option value="M">M</option>
+            <option value="F" selected>F</option>
+        </select><br />
+
+        <label asp-for="DoB">Date of birth</label>
+        <input type="date" asp-for="DoB" min="1990-01-01" max="2017-11-30"  /><br />
+
+        <label asp-for="Username">Username</label>
+        <input asp-for="Username" placeholder="Enter username" /><br />
+
+        <label asp-for="Password">Password</label>
+        <input type="password" asp-for="Password" placeholder="Enter password" /><br />
+
+        <label asp-for="PasswordConf">Confirm password</label>
+        <input type="password" asp-for="PasswordConf" placeholder="Confirm password" /><br />
+
+        <input type="submit" value="Sign up" />
+
+
+    </form>
+    <hr />
+</div>
