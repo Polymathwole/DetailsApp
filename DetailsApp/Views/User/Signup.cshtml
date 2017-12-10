@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model CreateUser
 @{ 
     ViewBag.Title = "Sign up";
 }
@@ -36,12 +36,10 @@
         <label asp-for="Password">Password</label>
         <input type="password" asp-for="Password" placeholder="Enter password" /><br />
 
-        <label asp-for="PasswordConf">Confirm password</label>
-        <input type="password" asp-for="PasswordConf" placeholder="Confirm password" /><br />
+        <label asp-for="ConfirmPassword">Confirm password</label>
+        <input type="password" asp-for="ConfirmPassword" placeholder="Confirm password" /><br />
 
         <input type="submit" value="Sign up" />
-
-
     </form>
     <hr />
 </div>

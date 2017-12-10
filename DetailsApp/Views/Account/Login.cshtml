@@ -1,0 +1,21 @@
+﻿@model LoginModel
+@{
+    ViewBag.Title = "Log in";
+}
+<h1>@TempData["message"]</h1>
+@if (ViewBag.Message != null)
+{
+    <h1>@ViewBag.Message</h1>
+}
+<div>
+   <form asp-action="Login" method="post">
+       <div asp-validation-summary="All"></div>
+       <label asp-for="Username">Username</label>
+       <input asp-for="Username" placeholder="Enter username" /><br/>
+       <label asp-for="Password">Password</label>
+       <input type="password" asp-for="Password" placeholder="Enter password" /><br />
+       <input type="submit" value="Log in" />
+   </form>
+    <hr />
+    <p>New user? <a href="/user/signup">Sign up</a></p>
+</div>

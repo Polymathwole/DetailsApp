@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DetailsApp.Models
 {
     public class EFUsersRepo : IUsers
     {
-        private AppDbContext context;
-        private User u;
+        private UserManager<User> userManager;
 
-        public EFUsersRepo(AppDbContext ctx)
+        public EFUsersRepo(UserManager<User> um)
         {
-            context = ctx;
+            userManager = um;
         }
 
-        public async Task<List<User>> Users() => await context.Users.ToListAsync<User>();
+        public async Task<List<User>> Users() => await userManager.Users.ToListAsync<User>();
 
-        public async Task<IEnumerable<User>> Find(int? id)
+        public async Task<IdentityResult> CreateUser(User newUser,string password) => await userManager.CreateAsync(newUser, password);
+
+        public async Task<User> Find(string username)
         {
-            IEnumerable<User> users = (await Users()).Where(u=>u.UserID==id).Select(u=>u);
+            User specificUser = await userManager.FindByNameAsync(username);
 
-            if (users.Count()>0)
-                return users;
-            else
-                return null;
+            return specificUser;
         }
     }
 }

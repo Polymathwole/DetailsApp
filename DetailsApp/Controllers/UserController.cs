@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DetailsApp.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
+
 
 namespace DetailsApp.Controllers
 {
@@ -14,10 +17,6 @@ namespace DetailsApp.Controllers
             users = use;
         }
 
-        public ViewResult Index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public ViewResult Signup()
@@ -26,11 +25,35 @@ namespace DetailsApp.Controllers
         }
 
         [HttpPost]
-        public ViewResult Signup(User u)
+        public async Task<IActionResult> Signup(CreateUser cu)
         {
             if (ModelState.IsValid)
             {
-                return View("Dashboard");
+                User u = new User
+                {
+                    UserName = cu.Username,
+                    Title = cu.Title,
+                    FirstName=cu.FirstName,
+                    LastName=cu.LastName,
+                    Gender=cu.Gender,
+                    DoB=cu.DoB
+                };
+
+                IdentityResult result = await users.CreateUser(u, cu.Password);
+
+                if (result.Succeeded)
+                {
+                    TempData["mess"] = "User successfully created! Log in";
+                    return RedirectToRoute("defaultl");
+                }
+                else
+                {
+                    foreach (IdentityError err in result.Errors)
+                    {
+                        ModelState.AddModelError("", err.Description);
+                    }
+                }
+
             }
 
             return View();
@@ -40,21 +63,6 @@ namespace DetailsApp.Controllers
         {
             ViewBag.Title = "List Users";
             return View("GetUsers", await users.Users());
-        }
-            
-
-        public async Task<ViewResult> GetOne(int? id)
-        {
-            if (id == null)
-            {
-                ViewBag.Title = "Get User";
-                return View("GetUsers", null);
-            }
-            else
-            {
-                ViewBag.Title = "Get User";
-                return View("GetUsers", await users.Find(id));
-            }
         }
     }
 }

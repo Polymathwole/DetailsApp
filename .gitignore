@@ -3,6 +3,7 @@
 
 DetailsApp/wwwroot/lib
 DetailsApp/appsettings.json
+detailsapp/migrations/
 
 # User-specific files
 *.suo
