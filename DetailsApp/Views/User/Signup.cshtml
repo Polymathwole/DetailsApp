@@ -4,42 +4,94 @@
 }
 
 <div>
-    <h3>Sign up</h3>
-    <form asp-action="Signup" method="post">
+    <form asp-action="Signup" method="post" id="form-signup">
+        <h3 id="signup-message">Sign up</h3>
         <div asp-validation-summary="All"></div>
-        <label asp-for="Title">Title</label>
-        <select asp-for="Title" >
-            <option value="Mr" selected>Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Miss">Miss</option>
-            <option value="Ms">Ms</option>
-        </select><br/>
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="Title">Title</label></b>
+            </div>
+            <div class="col-md-7">
+                <select class="form-control" asp-for="Title">
+                    <option value="Mr" selected>Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Ms">Ms</option>
+                </select>
+            </div>
+        </fieldset>
 
-        <label asp-for="FirstName">First name</label>
-        <input asp-for="FirstName" placeholder="Enter first name"  /><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="FirstName">First name</label></b>
+            </div>
+            <div class="col-md-7">
+                <input class="form-control" asp-for="FirstName" placeholder="Enter first name" />
+            </div>
+        </fieldset>
 
-        <label asp-for="LastName">Last name</label>
-        <input asp-for="LastName" placeholder="Enter last name"  /><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="LastName">Last name</label></b>
+            </div>
+            <div class="col-md-7">
+                <input class="form-control" asp-for="LastName" placeholder="Enter last name" />
+            </div>
+        </fieldset>
 
-        <label asp-for="Gender">Gender</label>
-        <select asp-for="Gender" >
-            <option value="M">M</option>
-            <option value="F" selected>F</option>
-        </select><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="Gender">Gender</label></b>
+            </div>
+            <div class="col-md-7">
+                <select class="form-control" asp-for="Gender">
+                    <option value="M">M</option>
+                    <option value="F" selected>F</option>
+                </select>
+            </div>
+        </fieldset>
 
-        <label asp-for="DoB">Date of birth</label>
-        <input type="date" asp-for="DoB" min="1990-01-01" max="2017-11-30"  /><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="DoB">Date of birth</label></b>
+            </div>
+            <div class="col-md-7">
+                <input class="form-control" type="date" asp-for="DoB" min="1990-01-01" max="2017-11-30" />
+            </div>
+        </fieldset>
 
-        <label asp-for="Username">Username</label>
-        <input asp-for="Username" placeholder="Enter username" /><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="Username">Username</label></b>
+            </div>
+            <div class="col-md-7">
+                <input class="form-control" asp-for="Username" placeholder="Enter username" />
+            </div>
+        </fieldset>
 
-        <label asp-for="Password">Password</label>
-        <input type="password" asp-for="Password" placeholder="Enter password" /><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="Password">Password</label></b>
+            </div>
+            <div class="col-md-7">
+                <input class="form-control" type="password" asp-for="Password" placeholder="Enter password" />
+            </div>
+        </fieldset>
 
-        <label asp-for="ConfirmPassword">Confirm password</label>
-        <input type="password" asp-for="ConfirmPassword" placeholder="Confirm password" /><br />
+        <fieldset class="form-group">
+            <div class="col-md-3">
+                <b><label class="form-control-label" asp-for="ConfirmPassword">Confirm password</label></b>
+            </div>
+            <div class="col-md-7">
+                <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Confirm password" />
+            </div>
+        </fieldset>
 
-        <input type="submit" value="Sign up" />
+        <fieldset class="form-group">
+            <div class="col-md-3 col-md-offset-5">
+                <input type="submit" class="btn btn-primary" value="Sign up" />
+            </div>
+        </fieldset>
     </form>
     <hr />
 </div>

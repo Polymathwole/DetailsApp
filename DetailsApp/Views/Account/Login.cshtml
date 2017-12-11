@@ -2,20 +2,41 @@
 @{
     ViewBag.Title = "Log in";
 }
-<h1>@TempData["message"]</h1>
-@if (ViewBag.Message != null)
-{
-    <h1>@ViewBag.Message</h1>
-}
-<div>
+<div id="form-login">
+    @if (TempData["message"] != null)
+    {
+        <h3 class="login-message">@TempData["message"]</h3>
+    }
+    @if (ViewBag.Message != null)
+    {
+        <h3 class="login-message">@ViewBag.Message</h3>
+    }
    <form asp-action="Login" method="post">
        <div asp-validation-summary="All"></div>
-       <label asp-for="Username">Username</label>
-       <input asp-for="Username" placeholder="Enter username" /><br/>
-       <label asp-for="Password">Password</label>
-       <input type="password" asp-for="Password" placeholder="Enter password" /><br />
-       <input type="submit" value="Log in" />
-   </form>
+       <fieldset class="form-group">
+           <div class="col-md-3">
+               <b><label asp-for="Username" class="form-control-label">Username</label></b>
+           </div>
+           <div class="col-md-7">
+               <input asp-for="Username" class="form-control" placeholder="Enter username" />
+           </div>
+        </fieldset>
+       <fieldset class="form-group">
+           <div class="col-md-3">
+               <b><label asp-for="Password" class="form-control-label">Password</label></b>
+           </div>
+           <div class="col-md-7">
+               <input type="password" asp-for="Password" class="form-control" placeholder="Enter password" />
+           </div>
+        </fieldset>
+       <fieldset class="form-group">
+           <div class="col-md-3 col-md-offset-5">
+               <input type="submit" class="btn btn-primary" value="Log in" />
+           </div>
+       </fieldset>
+</form>
     <hr />
-    <p>New user? <a href="/user/signup">Sign up</a></p>
+    <div class="col-md-5 col-md-offset-4">
+        <p>New user? <a href="/user/signup" class="btn btn-success">Sign up</a></p>
+    </div>
 </div>

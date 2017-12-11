@@ -2,11 +2,22 @@
 @{
     ViewBag.Title = "User Profile";
 }
-<div>Welcome to your profile page, <b>@Model.UserName</b><a asp-action="Logout">Log out</a></div>
-<div>
-    <b>Title</b><span>@Model.Title</span><br/>
-    <b>First name</b><span>@Model.FirstName</span><br />
-    <b>Last name</b><span>@Model.LastName</span><br />
-    <b>Gender</b><span>@Model.Gender</span><br />
-    <b>Date of birth</b><span>@Model.DoB</span><br />
+<nav class="navbar navbar-dark bg-inverse">
+    <span  class="navbar-brand"><b id="appname">Details App</b></span>
+    <ul class="nav navbar-nav nav-inline">
+        <li class="nav-item">
+            <b id="welcomeuser">Welcome, @Model.UserName</b>
+        </li>
+        <li class="nav-item">
+            <a id="logout" asp-action="Logout" class="btn btn-primary">Log out</a>
+        </li>
+    </ul>
+</nav>
+<div id="userinfo">
+    <h1>Your details</h1>
+    <b class="userfield">Title:</b><span class="uservalue">@Model.Title</span><br/>
+    <b class="userfield">First name:</b><span class="uservalue">@Model.FirstName</span><br />
+    <b class="userfield">Last name:</b><span class="uservalue">@Model.LastName</span><br />
+    <b class="userfield">Gender:</b><span class="uservalue">@Model.Gender</span><br />
+    <b class="userfield">Date of birth:</b><span class="uservalue">@Model.DoB</span><br />
 </div>
