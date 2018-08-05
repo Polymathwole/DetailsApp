@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using DetailsApp.Utilities;
-
+using System;
+using Microsoft.Extensions.Configuration;
 
 namespace DetailsApp.Controllers
 {
@@ -14,11 +15,13 @@ namespace DetailsApp.Controllers
     {
         private IUsers users;
         private SignInManager<User> signInManager;
+        private IConfiguration config;
 
-        public AccountController(IUsers use, SignInManager<User> signinMgr)
+        public AccountController(IUsers use, SignInManager<User> signinMgr, IConfiguration conf)
         {
             users = use;
             signInManager = signinMgr;
+            config = conf;
         }
 
         [AllowAnonymous]
@@ -32,26 +35,38 @@ namespace DetailsApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel details)
         {
-            if (ModelState.IsValid)
+            try
             {
-                User user = await users.Find(details.Username);
-
-                if (user!=null)
+                if (ModelState.IsValid)
                 {
-                    await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult signInResult= await signInManager.PasswordSignInAsync(user, details.Password, false, false);
+                    User user = await users.Find(details.Username);
 
-                    if (signInResult.Succeeded)
+                    if (user != null)
                     {
-                        HttpContext.Session.SetJson("User", user);
-                        return RedirectToAction("Userprofile");
-                    }
-                }
-                ModelState.AddModelError("",
-                   "Invalid username or password");
-            }
+                        await signInManager.SignOutAsync();
+                        Microsoft.AspNetCore.Identity.SignInResult signInResult = await signInManager.PasswordSignInAsync(user, details.Password, false, false);
 
-            return View();
+                        if (signInResult.Succeeded)
+                        {
+                            HttpContext.Session.SetJson("User", user);
+                            return RedirectToAction("Userprofile");
+                        }
+                    }
+                    ModelState.AddModelError("",
+                       "Invalid username or password");
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                string x = config.GetSection("LogPath").Value;
+
+                Logger log = new Logger(x);
+                log.WriteError(new string[] { ex.Message,ex.InnerException?.Message,ex.StackTrace });
+                return StatusCode(500);
+            }
+            
         }
 
         

@@ -4,6 +4,8 @@
 DetailsApp/wwwroot/lib
 DetailsApp/appsettings.json
 detailsapp/migrations/
+Pub
+DetailsApp/Properties/Publishprofiles
 
 # User-specific files
 *.suo

@@ -28,6 +28,7 @@ namespace DetailsApp
             }).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();//Identity setup for user authentication
 
             services.AddTransient<IUsers, EFUsersRepo>();//service to get users from the db
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();
             services.AddSession();
         }
@@ -43,7 +44,7 @@ namespace DetailsApp
             {
                 routes.MapRoute("default","{controller=Account}/{action=Login}/{id?}");
                 routes.MapRoute("defaultl", "login", new { controller = "Account", action = "Login" });
-                routes.MapRoute("", "user/signup", new { controller = "User", action = "Signup" });
+                routes.MapRoute("", "details application/user/signup", new { controller = "User", action = "Signup" });
             });
         }
     }
