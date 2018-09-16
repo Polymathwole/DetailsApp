@@ -66,7 +66,7 @@ namespace DetailsApp.Controllers.API_Controller
             return user;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<List<User>> Get()//for getting all users in the db
         {
             List<User> appusers = await users.Users();
